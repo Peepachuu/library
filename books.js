@@ -6,9 +6,34 @@ function Book(title, author, pages, read, displayed) {
     this.pages = pages;
     this.read = read;
     this.displayed = displayed;
-    this.info = () => {
-        return `${this.title} by ${this.author}, ${pages} pages, ${read ? "read" : "not read yet"}`
-    }
+}
+
+Book.prototype.createBookCard = function() {
+    const bookCard = document.createElement("section");
+    bookCard.className = "book";
+
+    const title = document.createElement("p");
+    title.textContent = this.title;
+    title.className = "title";
+
+    const author = document.createElement("p");
+    author.textContent = this.author;
+    author.className = "author";
+
+    const pages = document.createElement("p");
+    pages.className = "pages";
+    pages.textContent = `${this.pages} pages`;
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove"
+    removeButton.className = "remove";
+
+    const readToggler = document.createElement("button");
+    readToggler.textContent = "not read";
+    readToggler.className = "read";
+
+    bookCard.append(title, author, pages, readToggler, removeButton);
+    return bookCard;
 }
 
 function addBookToLibrary(book) {
@@ -19,10 +44,12 @@ function displayBooks() {
     const bookDisplay = document.querySelector(".books");
     for (const book of library) {
         if (book.displayed === false) {
-            bookDisplay.appendChild();
+            bookDisplay.appendChild(book.createBookCard());
         }
     }
 }
 
-const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
-console.log(book1.info())
+const book1 = new Book("Harry Potter and The Sorceror's Stone", "J.K Rowling", 295, false, false);
+library.push(book1);
+console.log(library[0]);
+displayBooks();

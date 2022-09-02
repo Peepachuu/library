@@ -53,14 +53,31 @@ function displayBooks() {
 function setButtons() {
     const addBookButton = document.querySelector(".add");
     const formContainer = document.querySelector(".form-container");
+    const submitButton = document.querySelector(".submit");
     addBookButton.addEventListener('click', () => {
         formContainer.style.visibility = "visible";
+        setFormDefaultValues();
     });
     formContainer.addEventListener('click', (e) => {
         if (e.target.className == "form-container") {
             formContainer.style.visibility = "hidden";
         }
     });
+    submitButton.addEventListener('click', () => {
+        const form = document.querySelector("form");
+        const newBook = new Book(form.title.value, form.author.value, form.pages.value, form.done_reading.value, false);
+        addBookToLibrary(newBook);
+        displayBooks();
+        formContainer.style.visibility = "hidden";
+    });
+}
+
+function setFormDefaultValues() {
+    const form = document.querySelector("form");
+    form.author.value = "";
+    form.title.value = "";
+    form.pages.value = "";
+    form.done_reading.checked = false;
 }
 
 setButtons();

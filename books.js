@@ -30,7 +30,7 @@ Book.prototype.createBookCard = function() {
 
     const readToggler = document.createElement("button");
     readToggler.textContent = "not read";
-    readToggler.className = "read";
+    readToggler.className = "done-reading";
 
     bookCard.append(title, author, pages, readToggler, removeButton);
     return bookCard;
@@ -45,6 +45,7 @@ function displayBooks() {
     for (const book of library) {
         if (book.displayed === false) {
             bookDisplay.appendChild(book.createBookCard());
+            book.displayed = true;
         }
     }
 }

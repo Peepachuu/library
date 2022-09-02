@@ -21,9 +21,20 @@
                 <p class="title">The Hobbit</p>
                 <p class="author">J.R.R Tolkien</p>
                 <p class="pages">295 pages</p>
-                <button class="read">Not Read</button>
+                <button class="done-reading">Not Read</button>
                 <button class="remove">Remove</button>
             </section>
         </section>
+        <form action="">
+            <h2>Add New Book</h2>
+            <input type="text" name="title" id="" placeholder="Title" required>
+            <input type="text" name="author" id="" placeholder="Author" required>
+            <input type="number" name="pages" id="pages" placeholder="Pages" required>
+            <label for="done-reading">
+                Have you read it?
+                <input type="checkbox" name="done-reading" id="done-reading">
+            </label>
+            <button>Submit</button>
+        </form>
 </body>
 </html>

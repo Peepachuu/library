@@ -70,3 +70,40 @@ header {
     border: transparent;
     padding: 12px;
 }
+
+form {
+    position: absolute;
+    background-color: #f8fafc;
+    color: #1e293b;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    min-height: 300px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+form input {
+    animation: shake 0.55s;
+    font-size: 1.2rem;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+form label, form button {
+    font-size: 1.2rem;
+}
+
+form label {
+    font-weight: 500;
+}
+
+form button {
+    background-color: greenyellow;
+    color: #1e293b;
+    border: transparent;
+    border-radius: 4px;
+    padding: 8px 16px;
+}

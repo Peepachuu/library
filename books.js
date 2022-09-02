@@ -50,7 +50,21 @@ function displayBooks() {
     }
 }
 
+function setButtons() {
+    const addBookButton = document.querySelector(".add");
+    const formContainer = document.querySelector(".form-container");
+    addBookButton.addEventListener('click', () => {
+        formContainer.style.visibility = "visible";
+    });
+    formContainer.addEventListener('click', (e) => {
+        if (e.target.className == "form-container") {
+            formContainer.style.visibility = "hidden";
+        }
+    });
+}
+
+setButtons();
+
 const book1 = new Book("Harry Potter and The Sorceror's Stone", "J.K Rowling", 295, false, false);
 library.push(book1);
-console.log(library[0]);
 displayBooks();

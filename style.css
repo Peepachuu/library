@@ -71,6 +71,10 @@ header {
     padding: 12px;
 }
 
+.book .done-reading.toggled {
+    background-color: lightgreen;
+}
+
 form {
     background-color: #f8fafc;
     color: #1e293b;

@@ -33,8 +33,11 @@ Book.prototype.createBookCard = function(index) {
     });
 
     const readToggler = document.createElement("button");
-    readToggler.textContent = "not read";
+    readToggler.textContent = "Not Read";
     readToggler.className = "done-reading";
+    readToggler.addEventListener('click', () => {
+        toggleDoneReadingButton(readToggler);
+    });
 
     bookCard.append(title, author, pages, readToggler, removeButton);
     return bookCard;
@@ -51,6 +54,15 @@ function removeBookFromLibrary(index) {
         child.dataset.position = counter++;
     }
     displayBooks();
+}
+
+function toggleDoneReadingButton(readToggler) {
+    if (readToggler.className == "done-reading") {
+        readToggler.textContent = "Read";
+    } else {
+        readToggler.textContent = "Not Read";
+    }
+    readToggler.classList.toggle("toggled");
 }
 
 function addBookToLibrary(book) {

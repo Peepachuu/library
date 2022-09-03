@@ -8,9 +8,10 @@ function Book(title, author, pages, read, displayed) {
     this.displayed = displayed;
 }
 
-Book.prototype.createBookCard = function() {
+Book.prototype.createBookCard = function(index) {
     const bookCard = document.createElement("section");
     bookCard.className = "book";
+    bookCard.dataset.position = index;
 
     const title = document.createElement("p");
     title.textContent = this.title;
@@ -27,6 +28,9 @@ Book.prototype.createBookCard = function() {
     const removeButton = document.createElement("button");
     removeButton.textContent = "Remove"
     removeButton.className = "remove";
+    removeButton.addEventListener('click', () => {
+        removeBookFromLibrary(bookCard.dataset.position);
+    });
 
     const readToggler = document.createElement("button");
     readToggler.textContent = "not read";
@@ -36,16 +40,29 @@ Book.prototype.createBookCard = function() {
     return bookCard;
 }
 
+function removeBookFromLibrary(index) {
+    const bookDisplay = document.querySelector(".books");
+
+    bookDisplay.removeChild(bookDisplay.children[index]);
+    library.splice(index, 1);
+
+    let counter = 0;
+    for (const child of bookDisplay.children) {
+        child.dataset.position = counter++;
+    }
+    displayBooks();
+}
+
 function addBookToLibrary(book) {
     library.push(book);
 }
 
 function displayBooks() {
     const bookDisplay = document.querySelector(".books");
-    for (const book of library) {
-        if (book.displayed === false) {
-            bookDisplay.appendChild(book.createBookCard());
-            book.displayed = true;
+    for (let i = 0; i < library.length; ++i) {
+        if (library[i].displayed === false) {
+            bookDisplay.appendChild(library[i].createBookCard(i));
+            library[i].displayed = true;
         }
     }
 }
@@ -85,3 +102,4 @@ setButtons();
 const book1 = new Book("Harry Potter and The Sorceror's Stone", "J.K Rowling", 295, false, false);
 library.push(book1);
 displayBooks();
+console.log(book1);

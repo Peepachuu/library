@@ -33,10 +33,16 @@ Book.prototype.createBookCard = function(index) {
     });
 
     const readToggler = document.createElement("button");
-    readToggler.textContent = "Not Read";
     readToggler.className = "done-reading";
+    if (this.read) {
+        readToggler.classList.toggle("toggled");
+        readToggler.textContent = "Read";
+    } else {
+        readToggler.textContent = "Not Read";
+    }
     readToggler.addEventListener('click', () => {
         toggleDoneReadingButton(readToggler);
+        this.read = !this.read;
     });
 
     bookCard.append(title, author, pages, readToggler, removeButton);
@@ -94,7 +100,7 @@ function setButtons() {
     });
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const newBook = new Book(form.title.value, form.author.value, form.pages.value, form.done_reading.value, false);
+        const newBook = new Book(form.title.value, form.author.value, form.pages.value, form.done_reading.checked, false);
         addBookToLibrary(newBook);
         displayBooks();
         formContainer.style.visibility = "hidden";
@@ -110,8 +116,3 @@ function setFormDefaultValues() {
 }
 
 setButtons();
-
-const book1 = new Book("Harry Potter and The Sorceror's Stone", "J.K Rowling", 295, false, false);
-library.push(book1);
-displayBooks();
-console.log(book1);

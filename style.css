@@ -12,6 +12,8 @@ body {
     display: grid;
     grid-template-rows: auto auto 1fr;
     background-color: #1e293b;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 header {

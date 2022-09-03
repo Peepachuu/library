@@ -82,7 +82,7 @@ function displayBooks() {
 function setButtons() {
     const addBookButton = document.querySelector(".add");
     const formContainer = document.querySelector(".form-container");
-    const submitButton = document.querySelector(".submit");
+    const form = document.querySelector("form");
     addBookButton.addEventListener('click', () => {
         formContainer.style.visibility = "visible";
         setFormDefaultValues();
@@ -92,8 +92,8 @@ function setButtons() {
             formContainer.style.visibility = "hidden";
         }
     });
-    submitButton.addEventListener('click', () => {
-        const form = document.querySelector("form");
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
         const newBook = new Book(form.title.value, form.author.value, form.pages.value, form.done_reading.value, false);
         addBookToLibrary(newBook);
         displayBooks();

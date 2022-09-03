@@ -23,9 +23,9 @@
     <div class="form-container">
         <form>
             <h2>Add New Book</h2>
-            <input type="text" name="title" id="" placeholder="Title" required>
-            <input type="text" name="author" id="" placeholder="Author" required>
-            <input type="number" name="pages" id="pages" placeholder="Pages" required>
+            <input type="text" name="title" placeholder="Title" required maxlength="150">
+            <input type="text" name="author" placeholder="Author" required maxlength="50">
+            <input type="number" name="pages" id="pages" placeholder="Pages" required max="10000" min="1">
             <label for="done-reading">
                 Have you read it?
                 <input type="checkbox" name="done_reading" id="done-reading">

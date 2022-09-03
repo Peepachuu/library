@@ -38,7 +38,7 @@ header {
 }
 .books {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-auto-rows: max-content;
     padding: 16px;
     gap: 16px;
@@ -47,7 +47,7 @@ header {
 .book {
     background-color: #f8fafc;
     color: #1e293b;
-    min-height: 300px;
+    min-height: 320px;
     border-radius: 10px;
     padding: 16px;
     display: flex;
@@ -66,9 +66,10 @@ header {
 }
 
 .book button {
-    border-radius: 4px;
-    border: transparent;
-    padding: 12px;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 12px 0px;
+    width: 100%;
 }
 
 .book .done-reading.toggled {
@@ -87,12 +88,30 @@ form {
     justify-content: space-between;
 }
 
-form input {
-    animation: shake 0.55s;
+form input[type=text], form input[type=number] {
     font-size: 1.2rem;
     border: 1px solid #1e293b;
     border-radius: 8px;
     padding: 8px;
+}
+
+form input[type=checkbox] {
+    appearance: none;
+    border: 1px solid black;
+    height: 1.2rem;
+    width: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form input[type=checkbox]::before {
+    visibility: hidden;
+    content: "✔";
+}
+
+form input[type=checkbox]:checked::before {
+    visibility: visible;
 }
 
 form label, form button {
@@ -101,13 +120,16 @@ form label, form button {
 
 form label {
     font-weight: 500;
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 form button {
     background-color: greenyellow;
     color: #1e293b;
     border: transparent;
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 8px 16px;
 }
 

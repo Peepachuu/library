@@ -1,52 +1,54 @@
 let library = [];
 
-function Book(title, author, pages, read, displayed) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.displayed = displayed;
-}
-
-Book.prototype.createBookCard = function(index) {
-    const bookCard = document.createElement("section");
-    bookCard.className = "book";
-    bookCard.dataset.position = index;
-
-    const title = document.createElement("p");
-    title.textContent = this.title;
-    title.className = "title";
-
-    const author = document.createElement("p");
-    author.textContent = this.author;
-    author.className = "author";
-
-    const pages = document.createElement("p");
-    pages.className = "pages";
-    pages.textContent = `${this.pages} pages`;
-
-    const removeButton = document.createElement("button");
-    removeButton.textContent = "Remove"
-    removeButton.className = "remove";
-    removeButton.addEventListener('click', () => {
-        removeBookFromLibrary(bookCard.dataset.position);
-    });
-
-    const readToggler = document.createElement("button");
-    readToggler.className = "done-reading";
-    if (this.read) {
-        readToggler.classList.toggle("toggled");
-        readToggler.textContent = "Read";
-    } else {
-        readToggler.textContent = "Not Read";
+class Book {
+    constructor(title, author, pages, read, displayed) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.displayed = displayed;
     }
-    readToggler.addEventListener('click', () => {
-        toggleDoneReadingButton(readToggler);
-        this.read = !this.read;
-    });
 
-    bookCard.append(title, author, pages, readToggler, removeButton);
-    return bookCard;
+    createBookCard(index) {
+        const bookCard = document.createElement("section");
+        bookCard.className = "book";
+        bookCard.dataset.position = index;
+
+        const title = document.createElement("p");
+        title.textContent = this.title;
+        title.className = "title";
+
+        const author = document.createElement("p");
+        author.textContent = this.author;
+        author.className = "author";
+
+        const pages = document.createElement("p");
+        pages.className = "pages";
+        pages.textContent = `${this.pages} pages`;
+
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove"
+        removeButton.className = "remove";
+        removeButton.addEventListener('click', () => {
+            removeBookFromLibrary(bookCard.dataset.position);
+        });
+
+        const readToggler = document.createElement("button");
+        readToggler.className = "done-reading";
+        if (this.read) {
+            readToggler.classList.toggle("toggled");
+            readToggler.textContent = "Read";
+        } else {
+            readToggler.textContent = "Not Read";
+        }
+        readToggler.addEventListener('click', () => {
+            toggleDoneReadingButton(readToggler);
+            this.read = !this.read;
+        });
+
+        bookCard.append(title, author, pages, readToggler, removeButton);
+        return bookCard;
+    }
 }
 
 function removeBookFromLibrary(index) {
